@@ -1,11 +1,4 @@
 ﻿using System;
-using Jint;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using System.Threading;
 
 namespace KijijiAdNotify {
@@ -22,23 +15,29 @@ namespace KijijiAdNotify {
                 }
             }
 
-            var parameters = new ScrapeParameters();
-
-            parameters.q = "iphone";
-            parameters.output = "listings.js";
-            parameters.categoryId = 0;
-            parameters.locationId = 1700199;
-
-            KjijijScraperInterface scraper = new KjijijScraperInterface();
-
             var cts = new CancellationTokenSource();
             Console.CancelKeyPress += (_, e) => {
                 e.Cancel = true; // keeps the app from terminating just by Ctrl+C
                 cts.Cancel();
             };
 
+            var parameters = new ScrapeParameters {
+                q = "iphone",
+                output = "listings.js",
+                categoryId = 0,
+                locationId = 1700199
+            };
+
             KijijiFloater eh = new KijijiFloater();
-            eh.alert(null, parameters, cts.IsCancellationRequested);
+            eh.alert(null, parameters, cts.IsCancellationRequested, notify);
+
+            void notify(Listing listing) {
+                Console.WriteLine(listing.Title);
+                Console.WriteLine(listing.Description);
+                Console.WriteLine(listing.Attributes.Price);
+                Console.WriteLine(listing.Url);
+                Console.WriteLine();
+            }
 
         }
     }

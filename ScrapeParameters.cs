@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace KijijiAdNotify {
+﻿namespace KijijiAdNotify {
     public class ScrapeParameters {
         //TODO add location.alberta.whatever the fuck support by deserializing json library in the repo
 
@@ -27,5 +23,9 @@ namespace KijijiAdNotify {
         public string keywords { get; set; }
         public string sortByName { get; set; }
 
+    }
+    public class ScrapeArgs  {
+        public ScrapeParameters parameters;
+        public ScrapeOptions Options;
     }
 }

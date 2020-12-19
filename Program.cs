@@ -22,19 +22,25 @@ namespace KijijiAdNotify {
             };
 
             var parameters = new ScrapeParameters {
-                q = "iphone",
-                output = "listings.js",
-                categoryId = 0,
-                locationId = 1700199
+                Q = "iphone",
+                Output = "listings",
+                CategoryId = 0,
+                LocationId = 1700199
             };
 
-            KijijiFloater eh = new KijijiFloater();
-            eh.alert(null, parameters, cts.IsCancellationRequested, notify);
+            var options = new ScrapeOptions {
+                MaxResults = -1,
+                MinResults = 80
+            };
 
-            void notify(Listing listing) {
+            var args_ = new ScrapeArgs(parameters, options);
+            KijijiFloater eh = new KijijiFloater();
+            eh.alert(args_, cts.IsCancellationRequested, Notify);
+
+            static void Notify(Listing listing) {
                 Console.WriteLine(listing.Title);
                 Console.WriteLine(listing.Description);
-                Console.WriteLine(listing.Attributes.Price);
+                Console.WriteLine("$"+listing.Attributes.Price);
                 Console.WriteLine(listing.Url);
                 Console.WriteLine();
             }

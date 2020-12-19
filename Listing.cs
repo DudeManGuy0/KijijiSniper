@@ -30,6 +30,7 @@ namespace KijijiAdNotify {
         public string Q { get; set; }
 
     }
+
     public class Attributes {
         [JsonProperty("location")]
         public string Location { get; set; }

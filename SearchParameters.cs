@@ -1,12 +1,14 @@
 ﻿namespace KijijiAdNotify {
-    public class ScrapeParameters {
+    public class SearchParameters {
         //TODO add location.alberta.whatever the fuck support by deserializing json library in the repo
 
         //Mandartory parameters
         public int LocationId { get; set; }
+
         public int CategoryId { get; set; }
+
         //Extra field for KijijiScraperInterface. Specifys output filename
-        public string Output { get; set; } = "KijijiListings"; 
+        public string Output { get; set; } = "KijijiListings";
 
         //Some known parameters available when using either the "api" (default) or "html" scraperType
         public decimal? MinPrice { get; set; }
@@ -27,20 +29,12 @@
         public string Keywords { get; set; }
         public string SortByName { get; set; }
 
-    }
-    public class ScrapeArgs  {
-        public ScrapeParameters ScrapeParameters;
-        public ScrapeOptions ScrapeOptions = null;
-
-        public ScrapeArgs(ScrapeParameters poo, ScrapeOptions pee) {
-            ScrapeParameters = poo;
-            ScrapeOptions = pee;
-        }
-        public ScrapeArgs(ScrapeParameters poo) {
-            ScrapeParameters = poo;
-        }
-        public ScrapeArgs() {
-        }
-
+        //SearchParameters merged here because its simpler
+        //and doesn't make sense to have seperated
+        public int? PageDelayMs { get; set; }
+        public int? MinResults { get; set; }
+        public int? MaxResults { get; set; }
+        public bool? ScrapeResultDetails { get; set; }
+        public int? ResultDetailsDelayMs { get; set; }
     }
 }

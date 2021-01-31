@@ -1,14 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 
 namespace KijijiAdNotify {
     public class Program {
-        static void Main(string[] args) {
+        static void Main() {
             //TODO add user interface
             //TODO make use of logging events
 
             int appVerbosityLevel = 1;
-
             void Log(string txt, int messageVerbosityLevel) {
                 if (appVerbosityLevel >= messageVerbosityLevel) {
                     Console.WriteLine(txt);
@@ -21,29 +22,21 @@ namespace KijijiAdNotify {
                 cts.Cancel();
             };
 
-            var parameters = new ScrapeParameters {
-                Q = "iphone",
-                Output = "listings",
+            var parameters = new SearchParameters {
+                Q = "iphone x",
                 CategoryId = 0,
                 LocationId = 1700199
             };
 
-            var options = new ScrapeOptions {
-                MaxResults = -1,
-                MinResults = 80
+            var parameters2 = new SearchParameters {
+                Q = "iphone 7 plus",
+                CategoryId = 0,
+                LocationId = 1700199
             };
-
-            var args_ = new ScrapeArgs(parameters, options);
             KijijiFloater eh = new KijijiFloater();
-            eh.alert(args_, cts.IsCancellationRequested, Notify);
 
-            static void Notify(Listing listing) {
-                Console.WriteLine(listing.Title);
-                Console.WriteLine(listing.Description);
-                Console.WriteLine("$"+listing.Attributes.Price);
-                Console.WriteLine(listing.Url);
-                Console.WriteLine();
-            }
+            eh.alert(parameters, cts.IsCancellationRequested, Notify.Notify1);
+
 
         }
     }

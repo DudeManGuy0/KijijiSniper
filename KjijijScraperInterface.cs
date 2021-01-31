@@ -24,21 +24,17 @@ namespace KijijiAdNotify {
             IEnumerable<string> collection = options.GetType()
                 .GetProperties(BindingFlags.Public | BindingFlags.Instance)
                 .Where(p => p.GetValue(options)!=null)
-                .Select(p => $"--{char.ToLowerInvariant(p.Name[0]) + p.Name.Substring(1) +"="+ p.GetValue(options)}");
+                .Select(p => $"--{char.ToLowerInvariant(p.Name[0])}{p.Name.Substring(1)}={p.GetValue(options)}");
 
             return string.Join(" ", collection);
         }
 
 
-        public List<Listing> ScrapeKijiji(ScrapeArgs args) {
-            var options = args.ScrapeOptions;
-            var parameters = args.ScrapeParameters;
+        public List<Listing> ScrapeKijiji(SearchParameters parameters) {
 
             string paramsCla = ObjectFieldsToCla(parameters);
-            string optionsCla = ObjectFieldsToCla(options);
-            string cla = paramsCla + " " + optionsCla;
+            string strCmdText = " queryKijiji.js " + paramsCla;
 
-            string strCmdText = " queryKijiji.js " + cla;
             Process proc = new Process {
                 StartInfo = {CreateNoWindow = true, FileName = "node.exe", Arguments = strCmdText}
             };
@@ -47,7 +43,14 @@ namespace KijijiAdNotify {
 
             string json = File.ReadAllText(parameters.Output +".json");
             File.Delete(parameters.Output+".json");
-            return JsonConvert.DeserializeObject<List<Listing>>(json);
+            
+            //To avoid Json.Net converting timezones
+            var jss = new JsonSerializerSettings {
+                DateFormatHandling = DateFormatHandling.IsoDateFormat,
+                DateTimeZoneHandling = DateTimeZoneHandling.Local,
+                DateParseHandling = DateParseHandling.DateTimeOffset
+            };
+            return JsonConvert.DeserializeObject<List<Listing>>(json, jss);
         }   
     }
 }

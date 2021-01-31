@@ -5,36 +5,51 @@ const kijiji = require("kijiji-scraper");
 const fs = require('fs');
 const args = require('minimist')(process.argv.slice(2));
 
-/*const options = {
-    minResults: 20
-};
 
-const params = {
-    locationId: 1700199,
-    categoryId: 0, 
-    sortByName: "priceAsc",
-    q: "brother"
-};*/
 
+//https://github.com/mwpenny/kijiji-scraper/blob/master/README.md for documentation. Retreived Dec. 16 2020
 const options = {
-    minResults: args.minResults
+    pageDelayMs: args.pageDelayMs,
+    minResults: args.minResults,
+    maxResults: args.maxResults,
+    scrapeResultDetails: args.scrapeResultDetails,
+    resultDetailsDelayMs: args.resultDetailsDelayMs
 };
 
 const params = {
-    locationId: args.locationId || args.l,
-    categoryId: args.categoryId || args.c,
-    sortByName: args.sortByName || args.s,
-    q: args.q
+    locationId: args.locationId,
+    categoryId: args.categoryId,
+    minPrice: args.minPrice,
+    maxPrice: args.maxPrice,
+    adType: args.adType,
+    q: args.q,
+    sortType: args.sortType,
+    distance: args.distance,
+    priceType: args.priceType,
+    keywords: args.keywords,
+    sortByName: args.sortByName
 };
+
+function clean(obj) {
+    for (var propName in obj) {
+      if (obj[propName] === null || obj[propName] === undefined) {
+        delete obj[propName];
+      }
+    }
+}
+
+clean(params);
+clean(options);
 
 kijiji.search(params, options, writeAdsToFile);
+
 function writeAdsToFile(err, ads) {
     if (!err) {
         var x = JSON.stringify(ads);
-        var filename = args.output || args.o;
+        var filename = args.output;
         fs.writeFile(filename + ".json", x, 'utf8', ()=>{});
     }
     if(err){
-        fs.writeFile('halp',"i errored :(" + err.stringify, 'utf8', ()=>{});
+        fs.writeFile('halp',"i errored :(" + err.message, 'utf8', ()=>{});
     }
 }

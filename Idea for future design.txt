@@ -1,0 +1,4 @@
+- Add average price for iPhone scraper thingy
+- Add Deal-O-Meter to see how fast a listing goes off the market and give it a deal score.
+  Maybe an AI can be used to automatically determine how good of a deal a listing is?
+  Actually now thinking about it, its just a glorified timer with some math on a listing...

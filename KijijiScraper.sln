@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KijijiAdNotify", "KijijiAdNotify.csproj", "{29F7083E-CED3-4891-BD23-BD1232FDF558}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "test", "..\test\test.csproj", "{27CDEE58-DEB9-4ABF-BB76-3006F341BDD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KijijiSniper", "..\KijijiSniper\KijijiSniper.csproj", "{729AAF9B-D8DE-4125-AC46-09BA68BC5ECE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{29F7083E-CED3-4891-BD23-BD1232FDF558}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29F7083E-CED3-4891-BD23-BD1232FDF558}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29F7083E-CED3-4891-BD23-BD1232FDF558}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27CDEE58-DEB9-4ABF-BB76-3006F341BDD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27CDEE58-DEB9-4ABF-BB76-3006F341BDD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27CDEE58-DEB9-4ABF-BB76-3006F341BDD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27CDEE58-DEB9-4ABF-BB76-3006F341BDD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{729AAF9B-D8DE-4125-AC46-09BA68BC5ECE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{729AAF9B-D8DE-4125-AC46-09BA68BC5ECE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{729AAF9B-D8DE-4125-AC46-09BA68BC5ECE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{729AAF9B-D8DE-4125-AC46-09BA68BC5ECE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

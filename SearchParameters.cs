@@ -26,6 +26,7 @@
         public string PriceType { get; set; }
 
         //Some known parameters available when using the "html" scraperType
+        public string ScraperType { get; set; }
         public string Keywords { get; set; }
         public string SortByName { get; set; }
 

@@ -1,0 +1,16 @@
+﻿Scout():
+	scans for new listings every set amount of time.
+	first, it makes a base scrape. it gets all of the current listings
+	and saves it to alreadyScrapedListings. from there it will start a
+	loop of scraping every set amount of time. It gets the listings and
+	if its in alreadyScrapdListings, it discards them. If the listing is
+	new it will get shown then put in alreadyScrapedListings so it wont be
+	picked up again in the future.
+
+ScoutMultiple():
+	a more advanced version of Scout. It pairs searchParamers with alreadyScrapedListings in a dictionary
+	and make it into a list to support passing multiple SearchParameters in. This effectivly binds each
+	SearchParameter to its resulting scrape. After it initializes each pair and has the 'base' reffered to
+	in Scout(), it will iterate over each pair inside the list of pairs. Each iteration will get a new set 
+	of scraped listings and compare them with alreadyScrapedListings in the pair it comes with. It is in a
+	nutshell, Scout() logic but done with more SearchParameters which are paird with their alreadyScrapedListings.

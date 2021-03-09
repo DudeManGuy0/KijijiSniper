@@ -37,7 +37,7 @@ namespace KijijiAdNotify {
         [JsonProperty("type")]
         public string Type { get; set; }
         [JsonProperty("forsaleby")]
-        public string Forsaleby { get; set; }
+        public string ForSaleBy { get; set; }
         [JsonProperty("fulfillment")]
         public string Fulfillment { get; set; }
         [JsonProperty("payment")]
@@ -45,10 +45,14 @@ namespace KijijiAdNotify {
         [JsonProperty("price")]
         public decimal Price { get; set; }
         [JsonProperty("petofferedby")]
-        public string Petofferedby { get; set; }
+        public string PetOfferedBy { get; set; }
         [JsonProperty("moreinfo")]
-        public string Moreinfo { get; set; }
+        public string MoreInfo { get; set; }
         [JsonProperty("animalwas")]
-        public string Animalwas { get; set; }
+        public string AnimalWas { get; set; }
+        [JsonProperty("phonebrand")]
+        public string? PhoneBrand { get; set; }
+        [JsonProperty("phonecarrier")]
+        public string? PhoneCarrier { get; set; }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Threading;
+using Newtonsoft.Json;
 
 namespace KijijiAdNotify {
     public class Program {
@@ -9,34 +11,35 @@ namespace KijijiAdNotify {
             //TODO add user interface
             //TODO make use of logging events
 
-            int appVerbosityLevel = 1;
-            void Log(string txt, int messageVerbosityLevel) {
-                if (appVerbosityLevel >= messageVerbosityLevel) {
-                    Console.WriteLine(txt);
-                }
-            }
 
-            var cts = new CancellationTokenSource();
-            Console.CancelKeyPress += (_, e) => {
-                e.Cancel = true; // keeps the app from terminating just by Ctrl+C
-                cts.Cancel();
+            var iPhone8 = new SearchParameters {
+                Q = "iphone 8",
+                CategoryId = 760,
+                LocationId = 1700199,
+                SortType = "DATE_DESCENDING",
+                MinResults = 100
             };
 
-            var parameters = new SearchParameters {
-                Q = "iphone x",
-                CategoryId = 0,
-                LocationId = 1700199
+            var iPhone7 = new SearchParameters {
+                Q = "iphone 7",
+                CategoryId = 760,
+                LocationId = 1700199,
+                SortType = "DATE_DESCENDING",
+                MinResults = 100
             };
 
-            var parameters2 = new SearchParameters {
-                Q = "iphone 7 plus",
-                CategoryId = 0,
-                LocationId = 1700199
+            var iPhoneX = new SearchParameters {
+                Q = "iphone X",
+                CategoryId = 760,
+                LocationId = 1700199,
+                SortType = "DATE_DESCENDING",
+                MinResults = 100
             };
-            KijijiFloater eh = new KijijiFloater();
 
-            eh.alert(parameters, cts.IsCancellationRequested, Notify.Notify1);
-
+            List<SearchParameters> searchParameters = new List<SearchParameters>{iPhoneX,iPhone7,iPhone8};
+            TimeSpan timeSpan = new TimeSpan(0,0,5,0);
+            KijijiScouter eh = new KijijiScouter();
+            eh.ScoutMultiple(searchParameters,timeSpan,Notify.Notify1, (listing) => true);
 
         }
     }
